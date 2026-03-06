@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Website</title>
+</head>
+<body>
+  <h1>Local Weather</h1>
+  <div id="weather">Loading...</div>
+
+  <script>
+    fetch('weather.php')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('weather').innerText =
+          `Weather in ${data.city}, ${data.country}: ${data.weather}`;
+      })
+      .catch(err => {
+        document.getElementById('weather').innerText = 'Error fetching weather.';
+      });
+  </script>
+</body>
+</html>

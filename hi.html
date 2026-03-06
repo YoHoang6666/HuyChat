@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tiny.cloud/1/v9p6k5qv6b18b15v599ec0ad67yvek0564nw1mhlui5rqqfv/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
+</head>
+<body>
+
+<textarea id="editor">
+  <h2>Hello TinyMCE</h2>
+  <p>Edit me!</p>
+</textarea>
+
+<script>
+tinymce.init({
+  selector: '#editor',
+  height: 500,
+
+  plugins: 'lists link image table code preview fullscreen',
+
+  toolbar:
+    'undo redo | styles | bold italic underline | ' +
+    'alignleft aligncenter alignright | ' +
+    'bullist numlist | link image table | ' +
+    'code preview fullscreen',
+
+  menubar: 'file edit view insert format tools table help',
+
+  content_style: `
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+  `
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+body{
+	margin: 0px;
+	background-color: white;
+}
+.navbar{
+	position: relative;
+	top: 0px;
+   left: 0px;
+	height: 70px;
+	width: 100%;
+	background-color: #000000;
+	align-items: center;
+}
+.navbar .img-container{
+  	position: relative;
+  	top: 12.5px;
+ 	left: 12.5px;
+  	background-color: #FFFFFF;
+  	height: 45px;
+  	width: 45px;
+  	border-radius: 22.5px;
+}
+.navbar .img-container img{
+  	width: 45px;
+}
+.navbar .slogan{
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+	color: white;
+  	font-size: 30px;
+  	position: relative;
+	top: -60px;
+	left: 10px;
+}
+.navbar .logo{
+	position: relative;
+	top: 0;
+	left: 0;
+   background-color: black;
+   width: 200px;
+   height: 70px;
+	cursor: pointer;
+	border: 0px;
+}
+.navbar .rank{
+	background-color: black;
+	height: 70px;
+	width: 90px;
+	color: White;
+	border: 0px;
+	position: relative;
+	font-family: "Montserrat", sans-serif;
+	font-size: 30px;
+}
+.rank-con{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+	gap: 10px;
+}
+.rank-con .con{
+	width: 225px;
+	height: 350px;
+	display: ;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.rank-con .con h2{
+	font-family: "Montserrat", sans-serif;
+	background-color: #ffe630;
+	padding: 15px;
+	margin-top: 0;
+	position: relative;
+}
+.rank-con .con img{
+	width: 175px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-bottom: 0;
+}
+.rank-con .con .slogan1{
+	text-align: center;
+	border-bottom: 1px solid #333;
+}
+.rank-con .con .flex p{
+	margin: 0;
+	margin-right: ;
+}
+.rank-con .con button{
+	margin: 0;
+	background-color: white;
+	color: #ffe630;
+	font-size: 15px;
+	margin-right: 10px;
+	position: 
+}
+.flex{
+	display: flex;
+}
