@@ -1,6 +1,4 @@
-<?php
-   require_once __DIR__.'/config/config.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -211,13 +209,13 @@
 <body>
 
     <div class="navbar">
-        <a href="<?= SITE_URL ?>">
+        <a href="/">
            <img src="assets/images/hcht-with-text-white.png" alt="hcht-with-text-white">
         </a>
         <!-- Buttons on the right -->
         <div class="navbar-button">
-            <button class="signup-btn" onclick="window.location.href='<?= SITE_URL ?>account/signup';">Sign Up</button>
-            <button class="login-btn" onclick="window.location.href='<?= SITE_URL ?>account/login';">Log In</button>
+            <button class="signup-btn" onclick="window.location.href='/account/signup';">Sign Up</button>
+            <button class="login-btn" onclick="window.location.href='/account/login';">Log In</button>
         </div>
     </div>
     <!-- Mobile Menu Toggle (3-dot icon) -->
@@ -227,8 +225,8 @@
 
     <!-- Hidden Mobile Dropdown Menu -->
     <div id="mobileMenu" class="mobile-dropdown">
-        <button onclick="window.location.href='<?= SITE_URL ?>account/signup';">Sign Up</button>
-        <button onclick="window.location.href='<?= SITE_URL ?>account/login';">Log In</button>
+        <button onclick="window.location.href='/account/signup';">Sign Up</button>
+        <button onclick="window.location.href='/account/login';">Log In</button>
     </div>
 
     <!-- Hero Section -->
