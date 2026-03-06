@@ -1,0 +1,363 @@
+<?php
+   require_once __DIR__.'/config/config.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuyChat</title>
+
+    <link rel='shortcut icon' href='assets/images/favicon.ico' type='image/x-icon' />
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2c2f33;
+            color: #ffffff;
+        }
+        .hero {
+            position: relative;
+            text-align: center;
+        }
+        .hero-image {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+        }
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-style: normal;
+            font-variant-caps: normal;
+            font-variant-ligatures: normal;
+            font-variant-numeric: normal;
+            font-variant-east-asian: normal;
+            font-variant-alternates: normal;
+            font-size-adjust: none;
+            font-kerning: auto;
+            font-optical-sizing: auto;
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            font-variant-position: normal;
+            font-variant-emoji: normal;
+            font-weight: 700;
+            font-stretch: normal;
+            font-size: 60px;
+            line-height: 70px;
+            font-size: 2.5em;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .about, .features, .plans {
+            background-color: #36393f;
+            margin: 20px 0;
+            border-radius: 8px;
+            padding: 30px;
+        }
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .features li {
+            margin: 10px 0;
+        }
+        .plan-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .plan {
+            background-color: #424549;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: left;
+        }
+        .plan h3 {
+            margin-top: 0;
+            color: #7289da;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #23272a;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: transparent; /* Start transparent */
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            height: 40px;
+            
+        }
+        .navbar.scrolled {
+            background-color: #2c2f33; /* Black when scrolled */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid white;
+        }
+        .navbar a img {
+            height: 40px;
+            cursor: pointer;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            bottom: 0;
+        }
+        .navbar p{
+            color: white;
+            position: absolute;
+            top: 10px;
+            left: 65px;
+        }
+        .navbar .huychat{
+            width: 130px;
+            height: 40px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        .navbar .huychat .scrolled{
+            background-color: #2c2f33;
+        }
+        .navbar-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .signup-btn, .login-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .signup-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .login-btn {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        /* Hide dropdown and 3-dot icon by default */
+        .navbar-menu-icon, .mobile-dropdown {
+            display: none;
+        }
+        
+        /* Responsive: small screen */
+        @media (max-width: 600px) {
+            .navbar-buttons {
+                display: none;
+            }
+        
+            .navbar-menu-icon {
+                display: block;
+                cursor: pointer;
+            }
+        
+            .navbar-menu-icon img {
+                width: 24px;
+                height: 24px;
+            }
+        
+            .mobile-dropdown {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #ffffff;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                padding: 10px;
+                flex-direction: column;
+                gap: 10px;
+                z-index: 1001;
+            }
+        
+            .mobile-dropdown button {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+                border: none;
+                background-color: #007bff;
+                color: white;
+                border-radius: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="<?= SITE_URL ?>">
+           <img src="assets/images/hcht-with-text-white.png" alt="hcht-with-text-white">
+        </a>
+        <!-- Buttons on the right -->
+        <div class="navbar-button">
+            <button class="signup-btn" onclick="window.location.href='<?= SITE_URL ?>account/signup';">Sign Up</button>
+            <button class="login-btn" onclick="window.location.href='<?= SITE_URL ?>account/login';">Log In</button>
+        </div>
+    </div>
+    <!-- Mobile Menu Toggle (3-dot icon) -->
+    <div class="navbar-menu-icon" onclick="toggleMobileMenu()">
+        <img src="assets/images/menu.png" alt="Menu" />
+    </div>
+
+    <!-- Hidden Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="mobile-dropdown">
+        <button onclick="window.location.href='<?= SITE_URL ?>account/signup';">Sign Up</button>
+        <button onclick="window.location.href='<?= SITE_URL ?>account/login';">Log In</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="finisher-header" style="width: 100%; height: 80vh;">
+        <div class="hero-text">
+            Welcome to HuyChat - The place where you can talk with your friends
+        </div>
+    </section>
+
+    <!-- About the Project -->
+    <section class="section about">
+        <h2>About Our Project</h2>
+        <p>
+            HuyChat is a revolutionary global chat application designed to connect people across the world seamlessly. Our platform is built on cutting-edge technology, ensuring that conversations are secure, fast, and accessible from any device.
+        </p>
+        <p>
+            Our team is dedicated to providing the best communication experience, focusing on privacy, reliability, and innovation.
+        </p>
+    </section>
+
+    <!-- Our Features -->
+    <section class="section features">
+        <h2>Our Features</h2>
+        <ul>
+            <li><strong>Real-Time Messaging:</strong> Instant communication without delays.</li>
+            <li><strong>File Sharing:</strong> Share images, videos, and documents securely.</li>
+            <li><strong>End-to-End Encryption:</strong> Your privacy is our top priority.</li>
+            <li><strong>Cross-Platform Support:</strong> Access HuyChat on any device.</li>
+        </ul>
+    </section>
+
+    <!-- Upgrade Plans -->
+    <section class="section plans">
+        <h2>Upgrade Your Plan</h2>
+        <div class="plan-container">
+            <div class="plan">
+                <h3>Silver Plan</h3>
+                <ul>
+                    <li>Unlimited Chat Access</li>
+                    <li>200MB File Upload Limit</li>
+                    <li>Priority Support</li>
+                </ul>
+                <p><strong>Price:</strong> $0.99/month</p>
+            </div>
+            <div class="plan">
+                <h3>Gold Plan</h3>
+                <ul>
+                    <li>Unlimited Chat Access</li>
+                    <li>400MB File Upload Limit</li>
+                    <li>Exclusive Features</li>
+                </ul>
+                <p><strong>Price:</strong> $2.49/month</p>
+            </div>
+            <div class="plan">
+                <h3>Diamond Plan</h3>
+                <ul>
+                    <li>Unlimited Chat Access</li>
+                    <li>1GB File Upload Limit</li>
+                    <li>Premium Tools</li>
+                </ul>
+                <p><strong>Price:</strong> $3.99/month</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 HuyChat. All rights reserved.</p>
+    </footer>
+    <script src="assets/js/finisher-header.es5.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+new FinisherHeader({
+  "count": 10,
+  "size": {
+    "min": 1300,
+    "max": 1500,
+    "pulse": 0
+  },
+  "speed": {
+    "x": {
+      "min": 0.1,
+      "max": 0.6
+    },
+    "y": {
+      "min": 0.1,
+      "max": 0.6
+    }
+  },
+  "colors": {
+    "background": "#9138e5",
+    "particles": [
+      "#ff4848",
+      "#000000",
+      "#2235e5",
+      "#000000",
+      "#ff0000"
+    ]
+  },
+  "blending": "overlay",
+  "opacity": {
+    "center": 0.5,
+    "edge": 0.05
+  },
+  "skew": -2,
+  "shapes": [
+    "c"
+  ]
+});
+</script>
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+}
+window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 10) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+    const navbarHuychat = document.querySelector(".huychat");
+    if (window.scrollY > 10) {
+        navbarHuychat.classList.add("scrolled");
+    } else {
+        navbarHuychat.classList.remove("scrolled");
+    }
+});
+</script>
+
+</body>
+</html>

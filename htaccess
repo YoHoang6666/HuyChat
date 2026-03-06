@@ -1,0 +1,35 @@
+DirectoryIndex index.php index.html index.htm index2.html
+
+ErrorDocument 403 https://www.huychat.cloud/error/404
+ErrorDocument 404 https://www.huychat.cloud/error/403
+ErrorDocument 500 https://www.huychat.cloud/error/500
+
+
+php_value display_errors On
+php_value mbstring.http_input auto
+php_value date.timezone Asia/Ho_Chi_Minh
+
+RewriteEngine On
+
+# Check if the domain does not start with www
+RewriteCond %{HTTP_HOST} ^huychat\.cloud [NC]
+
+# Redirect to the www version with HTTPS
+RewriteRule ^(.*)$ https://www.huychat.cloud/$1 [L,R=301]
+
+RewriteEngine On
+
+# Remove .html from URLs
+RewriteCond %{THE_REQUEST} \s([^.]+)\.html [NC]
+RewriteRule ^ %1 [L,R=301]
+
+# Internally rewrite .html if accessed without it
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+RewriteEngine On
+
+# Remove .php extension and allow access without it
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)$ $1.php [L]
